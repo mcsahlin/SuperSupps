@@ -1,35 +1,35 @@
 import { CartItem } from './models/cartItem';
 import { Inventory } from './models/inventory';
-import { d, pages, goTo, getPage, refreshCart } from './utils';
+import {
+	d,
+	main,
+	pages,
+	goTo,
+	getPage,
+	refreshCart,
+	createHeader,
+	createNavbar,
+	createMain,
+	createFooter,
+} from './utils';
 import { indexPage } from './utils/pages';
 import { cartPage } from './utils/pages/cart';
 import { itemPage } from './utils/pages/item';
 export const cart: CartItem[] = refreshCart();
 export const inventory = new Inventory();
-const page = getPage();
-console.log(page);
-const topLogo = d.getElementById('top-logo') as HTMLAnchorElement;
-topLogo.addEventListener('click', (e: MouseEvent) => {
-	e.preventDefault();
-	window.location.href = pages.index;
-});
+const page: string =
+	getPage() !== undefined ? `${pages}.${getPage()}` : pages.index;
+document.body.appendChild(createHeader());
+document.body.appendChild(createNavbar());
+document.body.appendChild(createMain(page));
+document.body.appendChild(createFooter());
 
-console.log(page);
-switch (page) {
-	case pages.index:
-		indexPage();
-		break;
+// Set location
+const loc = window.location.href;
+console.log('Location: ', loc);
 
-	case pages.item:
-		itemPage();
-		break;
-
-	case pages.cart:
-		cartPage();
-		break;
-	default:
-		break;
-}
+let test = d.createElement('h1') as HTMLHeadingElement;
+test.innerText = loc as string;
 
 const cartIcon = d.getElementById('cart-icon') as HTMLImageElement;
 cartIcon.addEventListener('click', (e: MouseEvent) => {

@@ -10,17 +10,9 @@ export function indexPage() {
 	itemFeed.id = 'item-feed';
 	itemFeed.className = 'item-feed';
 	main.appendChild(itemFeed);
-
 	inventory.data.map((item) => {
-		printItem(item);
-
-		// if (inventory.data.filter((i) => i.id !== item.id)) {
-		// 	const triangle = d.createElement('div') as HTMLDivElement;
-		// 	triangle.className = 'item__triangle';
-		// 	itemFeed.appendChild(triangle);
-		// }
+		return printItem(item);
 	});
-
 	function printItem(item: Product) {
 		let container = d.createElement('div') as HTMLDivElement;
 		container.id = item.id;

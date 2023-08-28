@@ -3,6 +3,7 @@ import { CartItem } from '../../models/cartItem';
 import { Product } from '../../models/product';
 import { main, createBanner, d } from '../../utils';
 
+itemPage();
 export function itemPage(): void {
 	main.className = 'page page--item';
 	let id = JSON.parse(localStorage.getItem('itemId') as string);
