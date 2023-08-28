@@ -1,0 +1,85 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+.navbar {
+	@include m.flexbox;
+	position: sticky;
+	top: 0;
+	width: 100vw;
+	height: 4rem;
+	padding: 0 10px;
+	background-color: v.$color-dark;
+	border-bottom: 3px solid v.$color-green;
+	justify-content: space-between;
+
+	&__logo {
+		font-size: 1.25rem;
+		font-weight: 1000;
+		color: #f5fafb;
+		font-weight: 1000;
+		font-style: italic;
+
+		&--accent {
+			color: v.$color-green;
+		}
+		&:hover {
+			cursor: pointer;
+		}
+	}
+
+	// MENU
+	&__list {
+		// ul
+		@include m.flexbox;
+		list-style: none;
+		gap: 1rem;
+	}
+
+	&__link {
+		// a
+		@include m.flexbox;
+		justify-content: space-between;
+		color: v.$color-light;
+		padding: 0.25rem 0.5rem;
+		border-radius: 0.25rem;
+		&:hover {
+			color: v.$color-green;
+			cursor: pointer;
+		}
+	}
+
+	&__cart {
+		&-container {
+			height: 3rem;
+			width: 3rem;
+			position: relative;
+			&:hover {
+				cursor: pointer;
+			}
+		}
+		&-icon {
+			height: 3rem;
+			width: 3rem;
+			z-index: 1;
+		}
+		&-counter {
+			z-index: 2;
+			position: relative;
+			bottom: 3rem;
+			right: -2rem;
+			height: 1rem;
+			width: 1rem;
+			border-radius: 50%;
+			background-color: v.$color-blue;
+			color: v.$color-light;
+			font-size: 1rem;
+			font-weight: 1000;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			&:hover {
+				cursor: pointer;
+			}
+		}
+	}
+}

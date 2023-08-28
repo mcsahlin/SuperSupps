@@ -1,0 +1,53 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+.top {
+	@include m.flexbox;
+	overflow: hidden;
+	background-color: v.$color-green;
+	height: 1.5rem;
+	font-style: italic;
+	position: relative;
+	&__rolling-text {
+		-moz-transform: translateX(100%);
+		-webkit-transform: translateX(100%);
+		transform: translateX(100%);
+
+		-moz-animation: my-animation 15s linear infinite;
+		-webkit-animation: my-animation 15s linear infinite;
+		animation: my-animation 15s linear infinite;
+	}
+
+	/* Firefox */
+	@-moz-keyframes my-animation {
+		from {
+			-moz-transform: translateX(100%);
+		}
+		to {
+			-moz-transform: translateX(-100%);
+		}
+	}
+
+	/* Chrome */
+	@-webkit-keyframes my-animation {
+		from {
+			-webkit-transform: translateX(100%);
+		}
+		to {
+			-webkit-transform: translateX(-100%);
+		}
+	}
+
+	@keyframes my-animation {
+		from {
+			-moz-transform: translateX(100%);
+			-webkit-transform: translateX(100%);
+			transform: translateX(100%);
+		}
+		to {
+			-moz-transform: translateX(-100%);
+			-webkit-transform: translateX(-100%);
+			transform: translateX(-100%);
+		}
+	}
+}

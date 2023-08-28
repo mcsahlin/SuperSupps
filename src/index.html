@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="scss/main.scss" />
+		<script defer src="ts/main.ts" type="module"></script>
+		<title>Document</title>
+	</head>
+	<body>
+		<header class="top">
+			<span class="top__rolling-text"
+				>Free worldwide shipping for all new customers!</span
+			>
+		</header>
+		<nav class="navbar">
+			<a href="/index" id="top-logo" class="navbar__logobox"
+				><span class="navbar__logo">SUPER</span
+				><span class="navbar__logo navbar__logo--accent">SUPPS</span></a
+			>
+			<ul class="navbar__list">
+				<li class="navbar__item"><a class="navbar__link" href="/cart">Cart</a></li>
+				<li class="navbar__item">
+					<a class="navbar__link" href="/checkout">Checkout</a>
+				</li>
+			</ul>
+			<div id="navbar__cart-btn" class="navbar__cart-container">
+				<img
+					id="cart-icon"
+					class="navbar__cart-icon"
+					src="assets/icons/cart-shopping-fast-svgrepo-com.svg"
+					alt="Shopping cart"
+				/>
+				<span id="cart-counter" class="navbar__cart-counter">0</span>
+			</div>
+		</nav>
+		<main id="main" class="page"></main>
+
+		<footer id="footer" class="foot">
+			<div class="foot__logo-box">
+				<span class="foot__logo">SUPER</span
+				><span class="foot__logo foot__logo--accent">SUPPS</span>
+			</div>
+			<div class="foot__social">
+				<a href="#" class="foot__link"><i class="fab fa-facebook-square"></i></a>
+				<a href="#" class="foot__link"><i class="fab fa-instagram"></i></a>
+				<a href="#" class="foot__link"><i class="fab fa-twitter-square"></i></a>
+			</div>
+		</footer>
+	</body>
+</html>

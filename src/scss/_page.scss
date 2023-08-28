@@ -1,0 +1,466 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+.page {
+	width: 100vw;
+	padding: 2rem 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	margin: 0 auto;
+	gap: 2rem;
+	.banner {
+		width: 100%;
+		display: flex;
+		justify-content: flex-start;
+		&__heading {
+			font-size: 3rem;
+			font-weight: 1000;
+			color: v.$color-dark;
+			text-align: center;
+			margin-bottom: 1rem;
+		}
+	}
+
+	&--index {
+		.item-feed {
+			padding: 5rem 10%;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			flex-wrap: wrap;
+			margin: 0 auto;
+			gap: 5rem;
+
+			&__triangle {
+				width: 50px;
+				height: 50px;
+				border-style: solid;
+				border-width: 93px 111.5px 0 111.5px;
+				border-color: v.$color-green;
+				transform: rotate(0deg);
+			}
+		}
+		.item {
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+			&__label {
+				margin-top: 1rem;
+				font-size: 2rem;
+				font-weight: 1000;
+				color: v.$color-dark;
+				&:hover {
+					color: darken(v.$color-green, 25%);
+					cursor: pointer;
+				}
+			}
+			&__imgBox {
+				width: 100%;
+				border: 3px solid v.$color-green;
+				border-radius: 50%;
+				margin: 1rem 0;
+				&:hover {
+					cursor: pointer;
+				}
+			}
+			&__img {
+				width: 100%;
+				&:hover {
+					cursor: pointer;
+				}
+			}
+
+			&__buyBox {
+				width: 100%;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				background-color: v.$color-dark;
+				color: v.$color-green;
+				border-radius: 50px;
+				height: 3rem;
+				padding-left: 12px;
+			}
+
+			&__markup {
+				font-size: 1.5rem;
+				font-weight: 1000;
+				color: v.$color-green;
+			}
+			&__cartBtn {
+				padding: 0.8rem 2rem;
+				background-color: darken(v.$color-light, 15%);
+				border-radius: 50px;
+				transition: all 0.4s;
+
+				color: v.$color-dark;
+				border: 0.2rem solid v.$color-dark;
+				padding: 1rem 2rem;
+				margin-right: 0rem;
+
+				&:hover {
+					cursor: pointer;
+					background-color: darken(v.$color-green, 10%);
+					transition: all 0.4s;
+					box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
+				}
+
+				&:active {
+					color: v.$color-light;
+					background-color: lighten(v.$color-green, 5%);
+
+					padding: 1rem 2rem;
+					margin-right: 0rem;
+
+					transition: all 0.2s;
+					animation: both;
+					// Make it stay here once clicked
+					box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
+				}
+			}
+		}
+	}
+
+	&--item {
+		padding: 2rem 10px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		flex-wrap: wrap;
+		margin: 0 auto;
+		gap: 2rem;
+
+		.item {
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+			gap: 20px;
+
+			&__imgBox {
+				width: 100%;
+				margin: 1rem 0;
+			}
+			&__img {
+				width: 100%;
+			}
+			&__buyBox {
+				width: 100%;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				align-items: center;
+				color: v.$color-light;
+				border-radius: 50px;
+			}
+
+			&__markupBox {
+				font-style: italic;
+				width: 100%;
+				display: flex;
+				justify-content: left;
+			}
+			&__markupLabel {
+				// font-size: 1.5rem;
+				color: v.$color-dark;
+			}
+			&__markup {
+				// font-size: 2rem;
+				color: v.$color-dark;
+				margin-bottom: 1rem;
+				font-weight: 400;
+				text-align: center;
+			}
+			&__cartBtn {
+				width: 100%;
+				height: 3rem;
+				padding: 1rem 2rem;
+				border: none;
+				border-radius: 5 5 50 50;
+				margin-top: 20px;
+				background-color: v.$color-dark;
+				font-size: larger;
+				color: v.$color-light;
+
+				&:hover {
+					cursor: pointer;
+					color: v.$color-green;
+				}
+
+				&:active {
+					transform: translateY(2px);
+					color: v.$color-light;
+					background-color: darken(v.$color-green, 10%);
+					border-radius: 0 0 50px 50px;
+				}
+			}
+			&__qtyBox {
+				width: 100%;
+				@include m.flexbox;
+				justify-content: space-between;
+				border-radius: 70%;
+			}
+			&__qtyInput {
+				// remove spinners
+				-moz-appearance: textfield;
+				&::-webkit-outer-spin-button,
+				&::-webkit-inner-spin-button {
+					-webkit-appearance: none;
+					margin: 0;
+				}
+				color: v.$color-dark;
+				width: 25%;
+				height: 3rem;
+				border: none;
+				border-bottom: 3px solid v.$color-green;
+				border-radius: 50%;
+				// border-color: v.$color-green;
+				// background-color: v.$color-dark;
+				text-align: center;
+				font-size: 1.5rem;
+				font-weight: 1000;
+			}
+			&__qtyInc {
+				// border-radius: 50% 0 0 50%;
+				border-radius: 50 5 5 5;
+				color: v.$color-green;
+				&:hover {
+					border: 3px solid v.$color-green;
+				}
+			}
+			&__qtyDec {
+				border-radius: 5 50 5 5;
+				color: v.$color-red;
+				&:hover {
+					border: 3px solid v.$color-red;
+				}
+			}
+			&__qtyInc,
+			&__qtyDec {
+				width: 30%;
+				border: none;
+				height: 3rem;
+				background-color: v.$color-dark;
+				font-size: 1.5rem;
+				font-weight: 1000;
+				&:hover {
+					cursor: pointer;
+					&:hover {
+						color: v.$color-light;
+					}
+				}
+			}
+			&__qtyLabel {
+				display: none;
+			}
+			&__descBox {
+				width: 100%;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				align-items: flex-start;
+				color: v.$color-light;
+				border-radius: 50px;
+				text-align: left;
+			}
+			&__descLabel {
+				margin-top: 1.5rem;
+				font-size: 1.5rem;
+				color: v.$color-dark;
+				font-weight: 1000;
+				width: 100%;
+				border-bottom: 3px solid v.$color-green;
+				margin-bottom: 10px;
+			}
+			&__desc {
+				font-size: 1rem;
+				color: v.$color-dark;
+				margin-bottom: 1rem;
+				font-weight: 400;
+				text-align: justify;
+			}
+		}
+	}
+
+	&--cart {
+		.cart {
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			text-align: left;
+			gap: 20px;
+			&__list {
+				width: 100%;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				text-align: left;
+				gap: 20px;
+			}
+			&__listItem {
+				width: 100%;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				text-align: left;
+				gap: 20px;
+			}
+
+			&__deleteBox {
+				height: 50px;
+				width: 5%;
+				display: flex;
+				justify-content: right;
+				align-items: right;
+				text-align: right;
+			}
+			&__deleteBtn {
+				width: 100%;
+				height: 3rem;
+				padding: 1rem 2rem;
+				border: none;
+				border-radius: 5 5 50 50;
+				margin-top: 20px;
+				background-color: v.$color-dark;
+				font-size: larger;
+				color: v.$color-light;
+
+				&:hover {
+					cursor: pointer;
+					color: v.$color-green;
+				}
+
+				&:active {
+					transform: translateY(2px);
+					color: v.$color-light;
+					background-color: darken(v.$color-green, 10%);
+					border-radius: 0 0 50px 50px;
+				}
+			}
+			&__imgBox {
+				width: 50px;
+				height: 50px;
+				object-fit: contain;
+				margin: 1rem 0;
+			}
+			&__img {
+				max-height: 50px;
+				max-width: 50px;
+			}
+			&__infoBox {
+				width: 100%;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				align-items: center;
+				color: v.$color-light;
+				border-radius: 50px;
+			}
+			&__label {
+				margin-top: 1rem;
+				font-size: 1rem;
+				color: v.$color-dark;
+				font-weight: 1000;
+			}
+			&__price {
+				font-size: 1.5rem;
+				color: v.$color-dark;
+				margin-bottom: 1rem;
+				font-weight: 400;
+			}
+			&__qtyInput {
+				// remove spinners
+				-moz-appearance: textfield;
+				&::-webkit-outer-spin-button,
+				&::-webkit-inner-spin-button {
+					-webkit-appearance: none;
+					margin: 0;
+				}
+				color: v.$color-dark;
+				width: 25%;
+				height: 3rem;
+				border: none;
+				border-bottom: 3px solid v.$color-green;
+				border-radius: 50%;
+				// border-color: v.$color-green;
+				// background-color: v.$color-dark;
+				text-align: center;
+				font-size: 1.5rem;
+				font-weight: 1000;
+			}
+			&__sum {
+				font-size: 1.5rem;
+				color: v.$color-dark;
+				margin-bottom: 1rem;
+				font-weight: 400;
+			}
+			&__totalBox {
+				width: 100%;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				align-items: center;
+				color: v.$color-light;
+				border-radius: 50px;
+			}
+			&__totalLabel {
+				margin-top: 1rem;
+				font-size: 1rem;
+				color: v.$color-dark;
+				font-weight: 1000;
+			}
+			.cart__totalSum {
+				font-size: 1.5rem;
+				color: v.$color-dark;
+				margin-bottom: 1rem;
+				font-weight: 400;
+			}
+			.cart__checkoutBox {
+				width: 100%;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				align-items: center;
+				color: v.$color-light;
+				border-radius: 50px;
+			}
+			.cart__checkoutBtn {
+				width: 100%;
+				height: 3rem;
+				padding: 1rem 2rem;
+				border: none;
+				border-radius: 5 5 50 50;
+				margin-top: 20px;
+				background-color: v.$color-dark;
+				font-size: larger;
+				color: v.$color-light;
+
+				&:hover {
+					cursor: pointer;
+					color: v.$color-green;
+				}
+
+				&:active {
+					transform: translateY(2px);
+					color: v.$color-light;
+					background-color: darken(v.$color-green, 10%);
+					border-radius: 0 0 50px 50px;
+				}
+			}
+		}
+	}
+}

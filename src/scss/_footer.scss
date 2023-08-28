@@ -1,0 +1,60 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+/*
+footer
+footer__logo-box
+footer__logo
+footer__logo--accent
+footer__social
+footer__link 
+*/
+
+#footer {
+	width: 100vw;
+	height: 10rem;
+	background-color: v.$color-dark;
+	border-top: 3px solid v.$color-green;
+}
+
+.foot {
+	@include m.flexbox;
+
+	&__logo-box {
+		@include m.flexbox;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		height: 100%;
+		background-color: v.$color-dark;
+	}
+
+	&__logo {
+		font-size: 1.25rem;
+		font-weight: 1000;
+		color: #f5fafb;
+		font-weight: 1000;
+		font-style: italic;
+
+		&--accent {
+			color: v.$color-green;
+		}
+	}
+
+	&__social {
+		@include m.flexbox;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		height: 100%;
+		background-color: v.$color-dark;
+	}
+
+	&__link {
+		@include m.flexbox;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		height: 100%;
+		background-color: v.$color-dark;
+	}
+}
