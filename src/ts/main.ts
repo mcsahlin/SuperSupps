@@ -1,12 +1,13 @@
-import { CartItem } from './models/cartItem';
-import { Inventory } from './models/inventory';
+import { CartItem } from './models/CartItem';
+import { Inventory } from './models/Inventory';
+import { Cart } from './models/Cart';
 import { d, pages, goTo, getPage, refreshCart } from './utils/utils';
 import { cartPage } from './pages/cart';
 import { itemPage } from './pages/item';
-export const cart: CartItem[] = refreshCart();
+import { indexPage } from './pages';
+export const cart: Cart = new Cart(refreshCart());
 export const inventory = new Inventory();
 
-// Get page based on url
 const url = window.location.href;
 const endpoint = url.split('/').pop();
 console.log(endpoint);

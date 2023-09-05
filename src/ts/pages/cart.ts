@@ -1,7 +1,7 @@
 import { cart } from '../main';
 import { CartItem } from '../models/cartItem';
 import { Product } from '../models/product';
-import { main, d, goTo, pages, createBanner } from '../utils';
+import { main, d, goTo, pages, createBanner } from '../utils/utils';
 
 export function cartPage() {
 	// If cart is empty, print message and redirect to index
@@ -20,7 +20,7 @@ export function cartPage() {
 
 		createBanner('Cart empty, returning . . .');
 		setTimeout(() => {
-			goTo(pages.index);
+			window.location.pathname = '';
 		}, 3000);
 	}
 	createBanner('Your shopping cart: ');

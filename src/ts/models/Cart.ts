@@ -1,44 +1,58 @@
-import { CartItem } from "./cartItem";
+import { CartItem } from './CartItem';
 
 export class Cart {
-  data: CartItem[];
-  constructor() {
-    this.data = [];
-  }
+	data: CartItem[];
+	constructor(data: CartItem[] = []) {
+		this.data = data;
+	}
 
-  add(item: CartItem): void {
-    this.data.push(item);
-  }
+	add(item: CartItem): void {
+		if (this.itemExists(item.id)) {
+			this.update(item.id, true, item.quantity);
+		} else {
+			this.data.push(item);
+		}
+		localStorage.setItem('cartData', JSON.stringify(this.data));
+	}
 
-  remove(id: string): void {
-    this.data = this.data.filter((item) => item.id !== id);
-  }
+	count(): number {
+		let count = 0;
+		this.data.map((item) => {
+			count += item.quantity;
+		});
+		return count;
+	}
 
-  update(id: string, qty: number): void {
-    this.data.map((item) => {
-      if (item.id === id) {
-        item.quantity = qty;
-      }
-    });
-  }
+	itemExists(id: string): boolean {
+		return this.data.find((item) => item.id === id) ? true : false;
+	}
 
-  get(): CartItem[] {
-    return this.data;
-  }
+	remove(id: string): void {
+		this.data = this.data.filter((item) => item.id !== id);
+	}
 
-  getTotal(): number {
-    let total: number = 0;
-    this.data.map((item) => {
-      // total += item.itemSum;
-    });
-    return total;
-  }
+	update(id: string, plus: boolean, qty: number): void {
+		this.data.map((item) => {
+			if (item.id === id) {
+				plus && (item.quantity += qty);
+				!plus && (item.quantity -= qty);
+			}
+		});
+	}
 
-  getQty(): number {
-    let qty: number = 0;
-    this.data.map((item) => {
-      qty += item.quantity;
-    });
-    return qty;
-  }
+	getTotal(): number {
+		let total: number = 0;
+		this.data.map((item: CartItem) => {
+			total += item.sum;
+		});
+		return total;
+	}
+
+	getQty(): number {
+		let qty: number = 0;
+		this.data.map((item) => {
+			qty += item.quantity;
+		});
+		return qty;
+	}
 }

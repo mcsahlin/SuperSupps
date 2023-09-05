@@ -1,5 +1,5 @@
 import { cart, inventory } from '../main';
-import { CartItem } from '../models/cartItem';
+import { CartItem } from '../models/CartItem';
 import { Product } from '../models/product';
 import { createBanner, d, isOffline, main } from '../utils/utils';
 
@@ -10,15 +10,13 @@ export function indexPage() {
 	itemFeed.id = 'item-feed';
 	itemFeed.className = 'item-feed';
 	main.appendChild(itemFeed);
-
 	inventory.data.map((item) => {
 		printItem(item);
-
-		// if (inventory.data.filter((i) => i.id !== item.id)) {
-		// 	const triangle = d.createElement('div') as HTMLDivElement;
-		// 	triangle.className = 'item__triangle';
-		// 	itemFeed.appendChild(triangle);
-		// }
+		if (inventory.data.filter((i) => i.id !== item.id)) {
+			const triangle = d.createElement('div') as HTMLDivElement;
+			triangle.className = 'item__triangle';
+			itemFeed.appendChild(triangle);
+		}
 	});
 
 	function printItem(item: Product) {
@@ -68,19 +66,8 @@ export function indexPage() {
 		cartBtn.id = item.id;
 		cartBtn.addEventListener('click', (e: MouseEvent) => {
 			e.preventDefault();
-			let match = false;
-			cart.map((cartItem: CartItem) => {
-				if (cartItem.id === item.id) {
-					cartItem.quantity++;
-					match = true;
-				}
-			});
-			if (!match) {
-				cart.push(new CartItem(item, 1));
-			}
-			localStorage.setItem('cart', JSON.stringify(cart));
+			cart.add(new CartItem(item, 1));
 		});
-
 		buyBox.appendChild(cartBtn);
 	}
 }
