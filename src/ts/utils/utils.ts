@@ -1,13 +1,13 @@
-import { CartItem } from './models/cartItem';
+import { CartItem } from '../models/cartItem';
 export const d = document;
 export const w = window;
 export const main = d.getElementById('main') as HTMLDivElement;
 export const pages = {
-	index: '/' || '' || '/index.html',
-	item: '/item',
-	cart: '/cart',
-	checkout: '/checkout',
-	confirmation: '/confirmation',
+	index: '',
+	item: 'item',
+	cart: 'cart',
+	checkout: 'checkout',
+	confirmation: 'confirmation',
 };
 export function refreshCart() {
 	return localStorage.getItem('cartData')

@@ -1,7 +1,7 @@
-import { cart } from '../../main';
-import { CartItem } from '../../models/cartItem';
-import { Product } from '../../models/product';
-import { main, d, goTo, pages, createBanner } from '../../utils';
+import { cart } from '../main';
+import { CartItem } from '../models/cartItem';
+import { Product } from '../models/product';
+import { main, d, goTo, pages, createBanner } from '../utils';
 
 export function cartPage() {
 	// If cart is empty, print message and redirect to index

@@ -1,7 +1,7 @@
-import { inventory, cart } from '../../main';
-import { CartItem } from '../../models/cartItem';
-import { Product } from '../../models/product';
-import { main, createBanner, d } from '../../utils';
+import { inventory, cart } from '../main';
+import { CartItem } from '../models/cartItem';
+import { Product } from '../models/product';
+import { main, createBanner, d } from '../utils/utils';
 
 export function itemPage(): void {
 	main.className = 'page page--item';
