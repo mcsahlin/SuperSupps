@@ -1,11 +1,19 @@
 import { cart } from '../main';
-import { CartItem } from '../models/cartItem';
-import { Product } from '../models/product';
-import { main, d, goTo, pages, createBanner } from '../utils/utils';
+import { CartItem } from '../models/CartItem';
+import { Product } from '../models/Product';
+import {
+	main,
+	d,
+	goTo,
+	pages,
+	createBanner,
+	uploadCart,
+	setCart,
+} from '../utils/utils';
 
 export function cartPage() {
 	// If cart is empty, print message and redirect to index
-	if (cart.length === 0) {
+	if (cart.data.length === 0) {
 		function navPrev(seconds: number = 3) {
 			let timer = setInterval(() => {
 				seconds--;
@@ -36,7 +44,7 @@ export function cartPage() {
 	container.appendChild(cartList);
 
 	// For each item in cart, print item
-	cart.map((item) => {
+	cart.data.map((item) => {
 		printItem(item);
 		function printItem(item: CartItem) {
 			// CONTAINER
@@ -55,16 +63,20 @@ export function cartPage() {
 
 			let deleteBtn = d.createElement('button') as HTMLButtonElement;
 			deleteBtn.className = 'cart__deleteBtn';
+			deleteBtn.id = item.id;
 			deleteBtn.innerText = 'X';
 			deleteBox.appendChild(deleteBtn);
 
 			deleteBtn.addEventListener('click', (e: MouseEvent) => {
 				e.preventDefault();
-				let index = cart.indexOf(item);
-				cart.splice(index, 1);
-				localStorage.setItem('cart', JSON.stringify(cart));
-				// setCart();
+				cart.data.map((cartItem) => {
+					if (cartItem.id === item.id) {
+						cart.data.splice(cart.data.indexOf(cartItem), 1);
+					}
+				});
+				uploadCart(cart);
 				goTo(pages.cart);
+				setCart();
 			});
 
 			// IMG BOX
@@ -135,16 +147,8 @@ export function cartPage() {
 
 	let totalSum = d.createElement('p') as HTMLParagraphElement;
 	totalSum.className = 'cart__totalSum';
-	totalSum.innerText = `${getTotal()}:-`;
+	totalSum.innerText = `${cart.getTotal()}:-`;
 	totalBox.appendChild(totalSum);
-
-	function getTotal(): number {
-		let total: number = 0;
-		cart.map((item) => {
-			total += item.quantity * parseInt(item.price);
-		});
-		return total;
-	}
 
 	// CHECKOUT BOX
 	let checkoutBox = d.createElement('div') as HTMLDivElement;

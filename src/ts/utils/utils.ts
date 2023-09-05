@@ -1,4 +1,6 @@
-import { CartItem } from '../models/cartItem';
+import { cart } from '../main';
+import { Cart } from '../models/Cart';
+import { CartItem } from '../models/CartItem';
 export const d = document;
 export const w = window;
 export const main = d.getElementById('main') as HTMLDivElement;
@@ -75,6 +77,12 @@ export function setCartListener(): void {
 //* Checks if user runs site in dev mode
 export function isOffline(): boolean {
 	let online = navigator.onLine;
-	if (!online) return true;
-	return false;
+	return !online;
 }
+
+export const uploadCart = (cart: Cart) => {
+	localStorage.setItem('cartData', JSON.stringify(cart.data));
+};
+export const setCart = () => {
+	cart.data = JSON.parse(localStorage.getItem('cartData') || '[]');
+};

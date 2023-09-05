@@ -1,6 +1,6 @@
 import { inventory, cart } from '../main';
-import { CartItem } from '../models/cartItem';
-import { Product } from '../models/product';
+import { CartItem } from '../models/CartItem';
+import { Product } from '../models/Product';
 import { main, createBanner, d } from '../utils/utils';
 
 export function itemPage(): void {
@@ -85,21 +85,8 @@ export function itemPage(): void {
 			cartBtn.setAttribute('id', item.id);
 			cartBtn.addEventListener('click', (e: MouseEvent) => {
 				e.preventDefault();
-				// handleToCart(cart as CartItem[]);
+				cart.add(new CartItem(item, parseInt(qtyInput.value)));
 			});
-
-			const handleCarting = () => {
-				// if id exists in cart, update qty
-				cart.filter((cartItem: CartItem) => {
-					if (cartItem.id === item.id) {
-						cartItem.quantity += parseInt(qtyInput.value);
-					} else {
-						cart.push(new CartItem(item, parseInt(qtyInput.value)));
-					}
-					localStorage.setItem('cart', JSON.stringify(cart));
-				});
-			};
-
 			buyBox.appendChild(cartBtn);
 		}
 
