@@ -43,7 +43,8 @@ export class Cart {
 	getTotal(): number {
 		let total: number = 0;
 		this.data.map((item: CartItem) => {
-			total += item.sum;
+			let sum: number = item.quantity * parseInt(item.price);
+			total += sum;
 		});
 		return total;
 	}

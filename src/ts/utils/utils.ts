@@ -17,6 +17,9 @@ export function refreshCart() {
 		: [];
 }
 export function getPage(): string {
+	if (window.location.pathname === '/') {
+		return pages.index;
+	}
 	return window.location.pathname.split('/').pop() as string;
 }
 
@@ -26,16 +29,36 @@ export function createHtml(htmlTag: string, className: string): HTMLElement {
 	return newElement;
 }
 
-export function createHtmlElementWithClassAndId(
-	htmlTagName: string,
-	className: string,
-	idName: string
-): HTMLElement {
-	let htmlElement = createHtml(htmlTagName, className);
-	htmlElement.setAttribute('id', idName);
-
-	return htmlElement;
+// Create new html with dynamic HTMLElement return type
+export function createElement<T extends HTMLElement>(
+	htmlTag: string,
+	attributes: { [attr: string]: string },
+	content: string = ''
+): T {
+	const newElement = document.createElement(htmlTag) as T;
+	for (const attr in attributes) {
+		if (attr == 'class') {
+			newElement.className = attributes[attr];
+			continue;
+		}
+		newElement.setAttribute(attr, attributes[attr]);
+	}
+	if (content) {
+		newElement.innerHTML = content;
+	}
+	return newElement as T;
 }
+
+// export function createHtmlElementWithClassAndId(
+// 	htmlTagName: string,
+// 	className: string,
+// 	idName: string
+// ): HTMLElement {
+// 	let htmlElement = createHtml(htmlTagName, className);
+// 	htmlElement.setAttribute('id', idName);
+
+// 	return htmlElement;
+// }
 
 export function generateId(): string {
 	let s4 = () => {
@@ -50,8 +73,8 @@ export function generateId(): string {
 
 export function goTo(page: string = pages.index) {
 	main.innerHTML = '';
-	main.className = `page page--${page}`;
 	window.location.href = page;
+	main.className = `page page--${page}`;
 }
 
 export function createBanner(bannerText: string) {
@@ -85,4 +108,7 @@ export const uploadCart = (cart: Cart) => {
 };
 export const setCart = () => {
 	cart.data = JSON.parse(localStorage.getItem('cartData') || '[]');
+
+	const cartCounter = d.getElementById('cart-counter') as HTMLSpanElement;
+	cartCounter.innerText = cart.data.length.toString();
 };

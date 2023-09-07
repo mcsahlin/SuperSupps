@@ -7,7 +7,6 @@ export function itemPage(): void {
 	main.className = 'page page--item';
 	let id = JSON.parse(localStorage.getItem('itemId') as string);
 	let item = inventory.data.filter((item) => item.id === id)[0];
-	console.log(item.id);
 	createBanner(item.label);
 	printItem(item);
 
@@ -80,7 +79,7 @@ export function itemPage(): void {
 
 			let sum = Number(qtyInput.value) * Number(item.price);
 
-			cartBtn.value = `Add to Cart (${sum.toString()}:-)`;
+			cartBtn.innerText = `Add to Cart (${sum.toString()}:-)`;
 			cartBtn.className = 'item__cartBtn';
 			cartBtn.setAttribute('id', item.id);
 			cartBtn.addEventListener('click', (e: MouseEvent) => {

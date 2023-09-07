@@ -1,8 +1,10 @@
 @use 'variables' as v;
 @use 'mixins' as m;
 
+#main {
+	width: 90vw;
+}
 .page {
-	width: 100vw;
 	padding: 2rem 10px;
 	display: flex;
 	flex-direction: column;
@@ -302,6 +304,7 @@
 			text-align: left;
 			gap: 20px;
 			&__list {
+				list-style: none;
 				width: 100%;
 				display: flex;
 				flex-direction: column;
@@ -313,7 +316,6 @@
 			&__listItem {
 				width: 100%;
 				display: flex;
-				flex-direction: column;
 				align-items: center;
 				justify-content: center;
 				text-align: left;
@@ -462,5 +464,63 @@
 				}
 			}
 		}
+	}
+
+	&--checkout {
+		.form {
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			gap: 2rem;
+			&__fs {
+				width: 100%;
+				padding: 1rem 10px;
+				display: flex;
+				flex-direction: column;
+				gap: 5px;
+				border-radius: 10px;
+			}
+			&__legend {
+				font-size: 1rem;
+				font-weight: 1000;
+				color: v.$color-dark;
+				text-align: center;
+				margin-bottom: 1rem;
+			}
+			&__input {
+				width: 100%;
+				height: 3rem;
+				border: none;
+				border-bottom: 2px solid gray;
+				padding: 0 1rem;
+				font-size: 1.5rem;
+				&::placeholder {
+					color: lighten(v.$color-dark, 55%);
+					font-style: italic;
+				}
+			}
+			&__btn--confirm {
+				width: 100%;
+				height: 3rem;
+				padding: 1rem 2rem;
+				border: none;
+				border-radius: 5 5 50 50;
+				margin-top: 20px;
+				background-color: v.$color-green;
+				font-size: larger;
+				color: v.$color-dark;
+				font-weight: 1000;
+			}
+		}
+	}
+
+	&--confirmation {
+		height: 100vh;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
 	}
 }
