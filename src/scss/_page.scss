@@ -13,6 +13,7 @@
 	flex-wrap: wrap;
 	margin: 0 auto;
 	gap: 2rem;
+	max-width: 960px;
 	.banner {
 		width: 100%;
 		display: flex;
@@ -294,88 +295,50 @@
 
 	&--cart {
 		.cart {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			justify-content: center;
 			&__list {
-				list-style: none;
 				width: 100%;
 				display: flex;
 				flex-direction: column;
-				align-items: center;
 				justify-content: center;
-				text-align: left;
-				gap: 20px;
-			}
-
-			&__itemDiv {
-				height: 100px;
-				display: flex;
-				flex-direction: row;
 				align-items: center;
+				flex-wrap: wrap;
+				margin: 0 auto;
+				gap: 4rem;
+				list-style: none;
+			}
+			&__listItem {
+				height: 13rem;
+			}
+			&__item {
+				width: 100%;
+				height: 130px;
+				display: flex;
 				justify-content: space-between;
-				border-bottom: 3px solid v.$color-green;
+				align-items: center;
 				margin-bottom: 30px;
 			}
-			&__deleteBox {
+			&__itemDiv {
+				width: 100%;
 				height: 100%;
 				display: flex;
-				justify-content: left;
-				align-items: left;
-			}
-			&__deleteBtn {
-				border: none;
-				font-size: 2rem;
-				background-color: transparent;
-				color: v.$color-red;
-				&:hover {
-					cursor: pointer;
-				}
+				justify-content: space-between;
+				align-items: center;
+				margin-bottom: 30px;
 			}
 			&__imgBox {
-				width: 20%;
+				width: 15%;
 			}
-			&__infoBox {
-				height: 50px;
+			&__deleteBox {
+				width: 15%;
+				height: 100%;
 				display: flex;
-				flex-direction: row;
-				gap: 20px;
-			}
-
-			&__price {
-				font-size: 1.2rem;
-				font-style: italic;
-			}
-			&__qtyInput {
-				width: 50px;
-				height: 20px;
-				text-align: center;
-				border: none;
-				border-bottom: 3px solid v.$color-green;
-			}
-			&__sum {
-				font-weight: 1000;
-			}
-			&__totalBox {
-				display: flex;
-				flex-direction: row;
-				width: 90%;
+				flex-direction: column;
+				align-items: stretch;
 				justify-content: space-between;
+				color: v.$color-light;
+				border-radius: 50px;
 			}
-			&__totalLabel {
-				font-weight: 1000;
-				font-size: xx-large;
-			}
-			&__totalSum {
-				font-weight: 1000;
-				font-size: xx-large;
-			}
-			&__checkoutBox {
-				display: flex;
-				width: 90%;
-			}
-			&__checkoutBtn {
+			&__deleteBtn {
 				width: 100%;
 				padding: 1rem 2rem;
 				border: none;
@@ -397,9 +360,58 @@
 					border-radius: 0 0 50px 50px;
 				}
 			}
+			&__imgBox {
+				width: 100%;
+			}
+			&__img {
+				width: 100%;
+			}
+			&__infoBox {
+				width: 70%;
+				height: 100%;
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+				align-items: center;
+				color: v.$color-light;
+				border-radius: 50px;
+			}
+			&__label {
+				margin-top: 1rem;
+				font-size: 1.5rem;
+				font-weight: 1000;
+				text-align: center;
+				color: v.$color-dark;
+				&:hover {
+					color: darken(v.$color-green, 25%);
+					cursor: pointer;
+				}
+			}
+			&__priceAndQtyBox {
+				width: 15%;
+				height: 100%;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-around;
+				color: v.$color-light;
+				border-radius: 50px;
+			}
+			&__price {
+				font-size: 1.5rem;
+				font-weight: 1000;
+				color: v.$color-dark;
+			}
+			&__qtyInput {
+				width: 50px;
+				height: 20px;
+				text-align: center;
+				border: none;
+				border-bottom: 3px solid v.$color-green;
+			}
+			&__checkoutBtn {
+			}
 		}
 	}
-
 	&--checkout {
 		.checkout {
 			&__item {
