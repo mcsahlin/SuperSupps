@@ -409,6 +409,15 @@
 				border-bottom: 3px solid v.$color-green;
 			}
 			&__checkoutBtn {
+				width: 100%;
+				padding: 1rem 2rem;
+				border: none;
+				border-radius: 5 5 50 50;
+				margin-top: 20px;
+				background-color: v.$color-green;
+				font-size: larger;
+				color: v.$color-dark;
+				font-weight: 1000;
 			}
 		}
 	}
@@ -521,7 +530,6 @@
 			}
 			&__btn--confirm {
 				width: 100%;
-				height: 3rem;
 				padding: 1rem 2rem;
 				border: none;
 				border-radius: 5 5 50 50;
