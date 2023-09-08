@@ -11,10 +11,12 @@ export const pages = {
 	checkout: 'checkout',
 	confirmation: 'confirmation',
 };
-export function refreshCart() {
-	return localStorage.getItem('cartData')
-		? JSON.parse(localStorage.getItem('cartData') as string)
-		: [];
+export function refreshCart(cart: Cart) {
+	if (localStorage.getItem('cartData')) {
+		cart.data = JSON.parse(localStorage.getItem('cartData') as string);
+	} else {
+		cart.data = [];
+	}
 }
 export function getPage(): string {
 	if (window.location.pathname === '/') {
@@ -104,11 +106,21 @@ export function isOffline(): boolean {
 }
 
 export const uploadCart = (cart: Cart) => {
-	localStorage.setItem('cartData', JSON.stringify(cart.data));
+	if (!cart.data) return;
+	localStorage.setItem('cartData', JSON.stringify(cart.data) as string);
 };
-export const setCart = () => {
-	cart.data = JSON.parse(localStorage.getItem('cartData') || '[]');
 
-	const cartCounter = d.getElementById('cart-counter') as HTMLSpanElement;
-	cartCounter.innerText = cart.data.length.toString();
+export const setCart = (cart: Cart) => {
+	cart.data = JSON.parse(localStorage.getItem('cartData') || '[]');
+	let counter = 0;
+	let cartCounter = d.getElementById('cart-counter') as HTMLSpanElement;
+	cart.data.map((item: CartItem) => {
+		counter += item.quantity;
+	});
+	cartCounter.innerText = counter.toString();
 };
+
+export function setMain(page: string = pages.index) {
+	main.className =
+		page === pages.index ? `page page--index` : `page page--${page}`;
+}

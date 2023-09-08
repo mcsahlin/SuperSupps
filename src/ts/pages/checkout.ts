@@ -1,8 +1,93 @@
-import { createBanner, createHtml, createElement } from '../utils/utils';
+import { cart } from '../main';
+import {
+	createBanner,
+	createHtml,
+	createElement,
+	refreshCart,
+	uploadCart,
+	setCart,
+	goTo,
+} from '../utils/utils';
 import { main } from '../utils/utils';
+import { cartPage } from './cart';
 
 export const checkoutPage = () => {
 	createBanner('Checkout');
+
+	cart.data.forEach((item) => {
+		// Print div container
+		let itemContainer = createElement<HTMLDivElement>('div', {
+			class: 'checkout__item',
+		});
+		main.appendChild(itemContainer);
+
+		// Print remove button & item image container
+		let imgBox = createElement<HTMLDivElement>('div', {
+			class: 'checkout__imgBox',
+		});
+		itemContainer.appendChild(imgBox);
+
+		// Print remove button
+		let removeBtn = createElement<HTMLButtonElement>('button', {
+			class: 'checkout__removeBtn btn',
+		});
+		removeBtn.innerText = 'X';
+		imgBox.appendChild(removeBtn);
+
+		// Print item image
+		let img = createElement<HTMLImageElement>('img', {
+			class: 'checkout__img',
+			src: item.imgLink,
+			alt: item.label,
+		});
+		imgBox.appendChild(img);
+
+		// Print item label
+		let label = createHtml('span', 'checkout__label');
+		label.innerText = item.label;
+		itemContainer.appendChild(label);
+
+		// Print item price & quantity container
+		let priceQtyBox = createElement<HTMLDivElement>('div', {
+			class: 'checkout__priceQtyBox',
+		});
+		itemContainer.appendChild(priceQtyBox);
+
+		// Print item price
+		let price = createHtml('span', 'checkout__price');
+		price.innerText = Number(item.price) * Number(item.quantity) + ':-';
+		priceQtyBox.appendChild(price);
+
+		// Print item quantity input
+		let qtyInput = createElement<HTMLInputElement>('input', {
+			class: 'checkout__qtyInput',
+			type: 'number',
+			min: '1',
+			max: '10',
+			value: item.quantity.toString(),
+		});
+		priceQtyBox.appendChild(qtyInput);
+
+		// Create event listener for quantity input and update cart and rerender this page
+		qtyInput.addEventListener('change', (e: Event) => {
+			e.preventDefault();
+			item.quantity = parseInt(qtyInput.value);
+			uploadCart(cart);
+			setCart(cart);
+			goTo('checkout');
+		});
+	});
+
+	// Print total price
+	let totalBox = createElement<HTMLDivElement>(
+		'div',
+		{
+			class: 'checkout__totalBox',
+		},
+		`Total: ${cart.getTotal().toString()}:-`
+	);
+	main.appendChild(totalBox);
+
 	let form = createElement<HTMLFormElement>('form', {
 		class: 'form',
 		action: 'confirmation',
@@ -38,11 +123,21 @@ export const checkoutPage = () => {
 	);
 	fieldsetPayment.appendChild(legendPayment);
 
-	let inputFirstname = createElement<HTMLInputElement>('input', {
-		class: 'form__input form__input--firstname',
-		type: 'text',
-		required: 'true',
-		placeholder: 'Firstname',
+	let inputFirstname = createElement<HTMLInputElement>(
+		'input',
+		{
+			class: 'form__input form__input--firstname',
+			type: 'text',
+			required: 'true',
+			placeholder: 'Firstname',
+		},
+		(sessionStorage.getItem('firstname') as string) || ''
+	);
+	inputFirstname.addEventListener('blur', (e: Event) => {
+		e.preventDefault();
+		if (inputFirstname.value.length < 2) {
+			sessionStorage.setItem('firstname', inputFirstname.value);
+		}
 	});
 	fieldsetDetails.appendChild(inputFirstname);
 
@@ -51,6 +146,13 @@ export const checkoutPage = () => {
 		type: 'text',
 		required: 'true',
 		placeholder: 'Lastname',
+		value: sessionStorage.getItem('lastname') || '',
+	});
+	inputLastname.addEventListener('blur', (e: Event) => {
+		e.preventDefault();
+		if (inputLastname.value.length < 2) {
+			sessionStorage.setItem('lastname', inputLastname.value);
+		}
 	});
 	fieldsetDetails.appendChild(inputLastname);
 
@@ -59,6 +161,13 @@ export const checkoutPage = () => {
 		type: 'text',
 		required: 'true',
 		placeholder: 'Street',
+		value: sessionStorage.getItem('street') as string,
+	});
+	inputStreet.addEventListener('blur', (e: Event) => {
+		e.preventDefault();
+		if (inputStreet.value.length < 2) {
+			sessionStorage.setItem('street', inputStreet.value);
+		}
 	});
 	fieldsetDetails.appendChild(inputStreet);
 
@@ -67,6 +176,13 @@ export const checkoutPage = () => {
 		type: 'text',
 		required: 'true',
 		placeholder: 'City',
+		value: sessionStorage.getItem('city') || '',
+	});
+	inputCity.addEventListener('blur', (e: Event) => {
+		e.preventDefault();
+		if (inputCity.value.length < 2) {
+			sessionStorage.setItem('city', inputCity.value);
+		}
 	});
 	fieldsetDetails.appendChild(inputCity);
 
@@ -75,6 +191,13 @@ export const checkoutPage = () => {
 		type: 'text',
 		required: 'true',
 		placeholder: 'State',
+		value: sessionStorage.getItem('state') || '',
+	});
+	inputState.addEventListener('blur', (e: Event) => {
+		e.preventDefault();
+		if (inputState.value.length < 2) {
+			sessionStorage.setItem('state', inputState.value);
+		}
 	});
 	fieldsetDetails.appendChild(inputState);
 
@@ -83,6 +206,13 @@ export const checkoutPage = () => {
 		type: 'text',
 		required: 'true',
 		placeholder: 'Zip',
+		value: sessionStorage.getItem('zip') || '',
+	});
+	inputZip.addEventListener('blur', (e: Event) => {
+		e.preventDefault();
+		if (inputZip.value.length < 2) {
+			sessionStorage.setItem('zip', inputZip.value);
+		}
 	});
 	fieldsetDetails.appendChild(inputZip);
 
@@ -91,6 +221,13 @@ export const checkoutPage = () => {
 		type: 'email',
 		required: 'true',
 		placeholder: 'Email',
+		value: sessionStorage.getItem('email') || '',
+	});
+	inputEmail.addEventListener('blur', (e: Event) => {
+		e.preventDefault();
+		if (inputEmail.value.length < 2) {
+			sessionStorage.setItem('email', inputEmail.value);
+		}
 	});
 	fieldsetDetails.appendChild(inputEmail);
 
@@ -99,6 +236,7 @@ export const checkoutPage = () => {
 		type: 'tel',
 		required: 'true',
 		placeholder: 'Phone',
+		value: sessionStorage.getItem('phone') || '',
 	});
 	fieldsetDetails.appendChild(inputPhone);
 
@@ -108,10 +246,16 @@ export const checkoutPage = () => {
 		type: 'text',
 		required: 'true',
 		placeholder: 'Name on card',
+		value: sessionStorage.getItem('cardName') || '',
+	});
+	inputCardName.addEventListener('blur', (e: Event) => {
+		e.preventDefault();
+		if (inputCardName.value.length < 2) {
+			sessionStorage.setItem('cardName', inputCardName.value);
+		}
 	});
 	fieldsetPayment.appendChild(inputCardName);
 
-	//! Card number
 	let inputCardNumber = createElement<HTMLInputElement>('input', {
 		class: 'form__input form__input--card-num',
 		type: 'text',
@@ -120,7 +264,6 @@ export const checkoutPage = () => {
 		placeholder: '1234 1234 1234 1234',
 	});
 
-	//? Add a space after 4th, 9th, 14th character
 	inputCardNumber.addEventListener('input', (e: Event) => {
 		e.preventDefault();
 		let input: string = inputCardNumber.value;
@@ -129,7 +272,6 @@ export const checkoutPage = () => {
 		}
 	});
 
-	//? Move focus to next input when 19 characters are entered
 	inputCardNumber.addEventListener('input', (e: Event) => {
 		e.preventDefault();
 		let input: string = inputCardNumber.value;

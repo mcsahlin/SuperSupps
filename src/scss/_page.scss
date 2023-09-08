@@ -226,14 +226,11 @@
 				border: none;
 				border-bottom: 3px solid v.$color-green;
 				border-radius: 50%;
-				// border-color: v.$color-green;
-				// background-color: v.$color-dark;
 				text-align: center;
 				font-size: 1.5rem;
 				font-weight: 1000;
 			}
 			&__qtyInc {
-				// border-radius: 50% 0 0 50%;
 				border-radius: 50 5 5 5;
 				color: v.$color-green;
 				&:hover {
@@ -296,13 +293,10 @@
 
 	&--cart {
 		.cart {
-			width: 100%;
 			display: flex;
 			flex-direction: column;
 			align-items: center;
 			justify-content: center;
-			text-align: left;
-			gap: 20px;
 			&__list {
 				list-style: none;
 				width: 100%;
@@ -313,143 +307,82 @@
 				text-align: left;
 				gap: 20px;
 			}
-			&__listItem {
-				width: 100%;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				text-align: left;
-				gap: 20px;
-			}
 
-			&__deleteBox {
-				height: 50px;
-				width: 5%;
+			&__itemDiv {
+				height: 100px;
 				display: flex;
-				justify-content: right;
-				align-items: right;
-				text-align: right;
+				flex-direction: row;
+				align-items: center;
+				justify-content: space-between;
+				border-bottom: 3px solid v.$color-green;
+				margin-bottom: 30px;
+			}
+			&__deleteBox {
+				height: 100%;
+				display: flex;
+				justify-content: left;
+				align-items: left;
 			}
 			&__deleteBtn {
-				width: 100%;
-				height: 3rem;
-				padding: 1rem 2rem;
 				border: none;
-				border-radius: 5 5 50 50;
-				margin-top: 20px;
-				background-color: v.$color-dark;
-				font-size: larger;
-				color: v.$color-light;
-
+				font-size: 2rem;
+				background-color: transparent;
+				color: v.$color-red;
 				&:hover {
 					cursor: pointer;
-					color: v.$color-green;
-				}
-
-				&:active {
-					transform: translateY(2px);
-					color: v.$color-light;
-					background-color: darken(v.$color-green, 10%);
-					border-radius: 0 0 50px 50px;
 				}
 			}
 			&__imgBox {
-				width: 50px;
-				height: 50px;
-				object-fit: contain;
-				margin: 1rem 0;
-			}
-			&__img {
-				max-height: 50px;
-				max-width: 50px;
+				width: 20%;
 			}
 			&__infoBox {
-				width: 100%;
+				height: 50px;
 				display: flex;
-				flex-direction: column;
-				justify-content: space-between;
-				align-items: center;
-				color: v.$color-light;
-				border-radius: 50px;
+				flex-direction: row;
+				gap: 20px;
 			}
-			&__label {
-				margin-top: 1rem;
-				font-size: 1rem;
-				color: v.$color-dark;
-				font-weight: 1000;
-			}
+
 			&__price {
-				font-size: 1.5rem;
-				color: v.$color-dark;
-				margin-bottom: 1rem;
-				font-weight: 400;
+				font-size: 1.2rem;
+				font-style: italic;
 			}
 			&__qtyInput {
-				// remove spinners
-				-moz-appearance: textfield;
-				&::-webkit-outer-spin-button,
-				&::-webkit-inner-spin-button {
-					-webkit-appearance: none;
-					margin: 0;
-				}
-				color: v.$color-dark;
-				width: 25%;
-				height: 3rem;
+				width: 50px;
+				height: 20px;
+				text-align: center;
 				border: none;
 				border-bottom: 3px solid v.$color-green;
-				border-radius: 50%;
-				// border-color: v.$color-green;
-				// background-color: v.$color-dark;
-				text-align: center;
-				font-size: 1.5rem;
-				font-weight: 1000;
 			}
 			&__sum {
-				font-size: 1.5rem;
-				color: v.$color-dark;
-				margin-bottom: 1rem;
-				font-weight: 400;
-			}
-			&__totalBox {
-				width: 100%;
-				display: flex;
-				flex-direction: column;
-				justify-content: space-between;
-				align-items: center;
-				color: v.$color-light;
-				border-radius: 50px;
-			}
-			&__totalLabel {
-				margin-top: 1rem;
-				font-size: 1rem;
-				color: v.$color-dark;
 				font-weight: 1000;
 			}
-			.cart__totalSum {
-				font-size: 1.5rem;
-				color: v.$color-dark;
-				margin-bottom: 1rem;
-				font-weight: 400;
-			}
-			.cart__checkoutBox {
-				width: 100%;
+			&__totalBox {
 				display: flex;
-				flex-direction: column;
+				flex-direction: row;
+				width: 90%;
 				justify-content: space-between;
-				align-items: center;
-				color: v.$color-light;
-				border-radius: 50px;
 			}
-			.cart__checkoutBtn {
+			&__totalLabel {
+				font-weight: 1000;
+				font-size: xx-large;
+			}
+			&__totalSum {
+				font-weight: 1000;
+				font-size: xx-large;
+			}
+			&__checkoutBox {
+				display: flex;
+				width: 90%;
+			}
+			&__checkoutBtn {
 				width: 100%;
-				height: 3rem;
 				padding: 1rem 2rem;
 				border: none;
 				border-radius: 5 5 50 50;
 				margin-top: 20px;
 				background-color: v.$color-dark;
 				font-size: larger;
-				color: v.$color-light;
+				color: v.$color-green;
 
 				&:hover {
 					cursor: pointer;
@@ -467,6 +400,78 @@
 	}
 
 	&--checkout {
+		.checkout {
+			&__item {
+				width: 100%;
+				height: 130px;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				margin-bottom: 30px;
+			}
+			&__imgBox {
+				width: 15%;
+			}
+			&__removeBtn {
+				width: 100%;
+				padding: 1rem 2rem;
+				border: none;
+				border-radius: 5 5 50 50;
+				margin-top: 20px;
+				background-color: v.$color-dark;
+				font-size: larger;
+				color: v.$color-green;
+
+				&:hover {
+					cursor: pointer;
+					color: v.$color-green;
+				}
+
+				&:active {
+					transform: translateY(2px);
+					color: v.$color-light;
+					background-color: darken(v.$color-green, 10%);
+					border-radius: 0 0 50px 50px;
+				}
+			}
+			&__img {
+				width: 100%;
+			}
+			&__label {
+				margin-top: 1rem;
+				font-size: 1.2rem;
+				font-weight: 1000;
+				text-align: center;
+				color: v.$color-dark;
+				&:hover {
+					color: darken(v.$color-green, 25%);
+					cursor: pointer;
+				}
+			}
+			&__priceQtyBox {
+				width: 15%;
+				height: 100%;
+				display: flex;
+				flex-direction: column;
+				align-items: stretch;
+				justify-content: space-between;
+
+				color: v.$color-light;
+				border-radius: 50px;
+			}
+			&__price {
+				font-size: 1.5rem;
+				font-weight: 1000;
+				color: v.$color-dark;
+			}
+			&__qtyInput {
+				width: 50px;
+				height: 20px;
+				text-align: center;
+				border: none;
+				border-bottom: 3px solid v.$color-green;
+			}
+		}
 		.form {
 			width: 100%;
 			display: flex;

@@ -1,4 +1,4 @@
-import { CartItem } from './cartItem';
+import { CartItem } from './CartItem';
 
 export class CartStorage {
 	getData(): CartItem[] | false {
