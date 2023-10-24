@@ -1,6 +1,6 @@
 import { cart, inventory } from '../main';
 import { CartItem } from '../models/CartItem';
-import { Product } from '../models/Product';
+import { Product } from '../models/product';
 import { createBanner, d, isOffline, main } from '../utils/utils';
 
 export function indexPage() {

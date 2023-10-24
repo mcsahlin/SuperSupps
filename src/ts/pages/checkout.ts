@@ -336,26 +336,3 @@ export const checkoutPage = () => {
 	);
 	form.appendChild(btnConfirm);
 };
-
-//* List all classnames used in this file from top to bottom:
-// form
-// form__fs
-// form__fs--details
-// form__fs--payment-card
-// form__legend
-// form__legend--details
-// form__legend--payment-card
-// form__input
-// form__input--firstname
-// form__input--lastname
-// form__input--street
-// form__input--city
-// form__input--state
-// form__input--zip
-// form__input--email
-// form__input--phone
-// form__input--card-name
-// form__input--card-num
-// form__input--card-exp
-// form__input--csv
-// form__btn--confirm btn

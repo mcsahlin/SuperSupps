@@ -51,17 +51,6 @@ export function createElement<T extends HTMLElement>(
 	return newElement as T;
 }
 
-// export function createHtmlElementWithClassAndId(
-// 	htmlTagName: string,
-// 	className: string,
-// 	idName: string
-// ): HTMLElement {
-// 	let htmlElement = createHtml(htmlTagName, className);
-// 	htmlElement.setAttribute('id', idName);
-
-// 	return htmlElement;
-// }
-
 export function generateId(): string {
 	let s4 = () => {
 		return Math.floor((1 + Math.random()) * 0x10000)

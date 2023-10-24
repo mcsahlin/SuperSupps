@@ -48,10 +48,10 @@ export function cartPage(fromCheckout: boolean = false) {
 		});
 		listItem.appendChild(itemDiv);
 
-		let deleteBox = createElement<HTMLDivElement>('div', {
+		let delImgBox = createElement<HTMLDivElement>('div', {
 			class: 'cart__deleteBox',
 		});
-		itemDiv.appendChild(deleteBox);
+		itemDiv.appendChild(delImgBox);
 
 		let deleteBtn = createElement<HTMLButtonElement>(
 			'button',
@@ -65,14 +65,17 @@ export function cartPage(fromCheckout: boolean = false) {
 					cart.data.splice(cart.data.indexOf(cartItem), 1);
 				}
 			});
+			uploadCart(cart);
+			setCart(cart);
+			goTo(pages.cart);
 		});
-		deleteBox.appendChild(deleteBtn);
+		delImgBox.appendChild(deleteBtn);
 
 		if (!fromCheckout) {
 			let imgBox = createElement<HTMLDivElement>('div', {
 				class: 'cart__imgBox',
 			});
-			itemDiv.appendChild(imgBox);
+			delImgBox.appendChild(imgBox);
 
 			let img = createElement<HTMLImageElement>('img', {
 				class: 'cart__img',
@@ -96,14 +99,19 @@ export function cartPage(fromCheckout: boolean = false) {
 		);
 		infoBox.appendChild(label);
 
+		let priceAndQtyBox = createElement<HTMLDivElement>('div', {
+			class: 'cart__priceAndQtyBox',
+		});
+		infoBox.appendChild(priceAndQtyBox);
+
 		let price = createElement<HTMLParagraphElement>(
 			'p',
 			{
 				class: 'cart__price',
 			},
-			`${item.price}:-`
+			`${Number(item.price) * Number(item.quantity)}:-`
 		);
-		infoBox.appendChild(price);
+		priceAndQtyBox.appendChild(price);
 
 		let qtyInput = createElement<HTMLInputElement>('input', {
 			class: 'cart__qtyInput',
@@ -118,12 +126,12 @@ export function cartPage(fromCheckout: boolean = false) {
 				if (item.id === qtyInput.id) {
 					item.quantity = parseInt(qtyInput.value);
 					uploadCart(cart);
+					setCart(cart);
+					goTo(pages.cart);
 				}
 			});
-			setCart(cart);
-			goTo(pages.cart);
 		});
-		infoBox.appendChild(qtyInput);
+		priceAndQtyBox.appendChild(qtyInput);
 	} // END PRINT ITEM
 	let totalBox = createElement<HTMLDivElement>('div', {
 		class: 'cart__totalBox',
